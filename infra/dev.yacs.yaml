@@ -1,0 +1,13 @@
+---
+- name: yacs-dev
+  hosts: dev
+  become: true
+  gather_facts: true
+  vars:
+    url: dev.yacs.io
+  roles:
+    - jenkins
+    # - yacs
+  tasks:
+    - name: check that it works
+      cmd: echo "wow"
