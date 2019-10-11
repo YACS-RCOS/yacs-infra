@@ -1,2 +1,2 @@
-[defaults]
-dev
+[kvm]
+kvm3.cs.rpi.edu.yml
