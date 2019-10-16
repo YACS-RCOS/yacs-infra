@@ -1,6 +1,0 @@
----
-- name: yacs-dev
-  hosts: kvm
-  remote_user: may7
-  roles:
-    - jenkins
