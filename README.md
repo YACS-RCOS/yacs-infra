@@ -1,5 +1,8 @@
-# yacs-infra
+# YACS Infrastructure (IaC)
 
-Folder structure:
-- infra (Ansible Playbooks — Definition of hosts)
-- pipelines (Development and Deployment Pipelines)
+## Info
+Growing Infrastructure as Code repository to manage images, scripts and jobs
+
+## Folder structure:
+- ./images (Docker images, bootstrapped with Ansible)
+- ./scripts (Scripts to use in Jenkins)
