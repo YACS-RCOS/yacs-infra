@@ -1,0 +1,28 @@
+---
+- name: yacs-dev
+  hosts: 127.0.0.1
+  connection: localhost
+  tasks:
+    - name: Install System Dependencies (through APT)
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - docker.io
+        - jq
+        - git
+        - nano
+        - curl
+
+    - name: Install Docker-Compose
+      command: "curl -L \"https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose"
+
+    - name: Clone YACS Repo
+      git:
+        repo: https://github.com/YACS-RCOS/yacs.git
+        dest: /app/yacs-dev/
+        clone: yes
+
+    # - name: Prepare Development Environment
+    #   command: "bash /app/yacs-dev/bin/yacs-prepare-development"
+      # command: echo wow
