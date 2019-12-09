@@ -17,7 +17,7 @@ In Jenkins: Navigate to `Deploy/yacs-prod` & Click **Build Now** (Should take 3 
 
 ## Deploy Dev
 
-**Dev Branch:** `develop*` in YACS-RCOS/yacs
+**Dev Branch:** `develop` in YACS-RCOS/yacs
 
 On push to develop, the update source is deployed to `kvm3.cs.rpi.edu`
 
