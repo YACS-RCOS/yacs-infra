@@ -1,0 +1,35 @@
+version: "3.4"
+# uses environment variables set in .env
+# example @ ./example.env
+# see readme.md for more info
+
+volumes:
+  grafana-storage:
+
+services:
+    pgadmin:
+        restart: unless-stopped
+        image: dpage/pgadmin4
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=${YX_ADMIN_EMAIL}
+            - PGADMIN_DEFAULT_PASSWORD=${YX_PG_PASS}
+            - PGADMIN_ENABLE_TLS=True
+        volumes:
+            - ../ssl/cert.pem:/certs/server.cert
+            - ../ssl/privkey.pem:/certs/server.key
+        ports:
+            - "${YX_PG_PORT:-7001}:443"
+    grafana:
+        restart: unless-stopped
+        image: grafana/grafana
+        volumes:
+            - grafana-storage:/var/lib/grafana
+            - ${YX_SSL_CERT_LOCATION}:/certs/server.cert
+            - ${YX_SSL_KEY_LOCATION}:/certs/server.key
+        environment:
+            - GF_SERVER_PROTOCOL=https
+            - GF_SERVER_ENABLE_GZIP=${YX_GF_GZIP:-true}
+            - GF_SERVER_CERT_FILE=/certs/server.cert
+            - GF_SERVER_CERT_KEY=/certs/server.key
+        ports:
+            - "${YX_GF_PORT:-7002}:3000"
