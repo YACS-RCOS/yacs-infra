@@ -5,11 +5,11 @@ Collection of services running to assist production and development.
 ## Configuration
 
 1. Copy `example.env` to `.env` and change variables to suit environment.
-2. Then run `./up.sh` or `make` or `make ops-up`. (Starts services in background)
+2. Then run `make` or `make ops-up`. (Starts services in background)
 
 ### Environment Var Change
 
-If you change an environment variable in `.env`, re-run `./up.sh`.
+If you change an environment variable in `.env`, re-run `make` or `make ops-up`.
 
 ## Service Catalog
 
@@ -31,3 +31,7 @@ cert. (`YX_SSL_KEY_LOCATION` and `YX_SSL_CERT_LOCATION`)*
 | ------------ | ---------------------- |
 | PgAdmin      | YX_PG                  |
 | Grafana      | YX_GF                  |
+
+## Reference Docs
+
+- [Docker Compose Environment Variables](https://docs.docker.com/compose/env-file/)

@@ -1,5 +1,5 @@
 ops-up:
-	./up.sh
+	docker-compose up -d
 
 ops-down:
 	docker-compose down
