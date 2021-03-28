@@ -4,8 +4,9 @@
 Growing Infrastructure as Code repository to manage images, scripts and jobs
 
 ## Folder structure
-- `./images` *(Docker images, bootstrapped with Ansible)*
-- `./scripts` *(Scripts to use in Jenkins)*
+- [`./images`](./images) *(Docker images, bootstrapped with Ansible)*
+- [`./scripts`](./scripts) *(Scripts to use in Jenkins)*
+- [`./ops-compose-stack`](./ops-compose-stack) *(Ops services for prod and dev data/info)*
 
 ## Persistent Services
 
