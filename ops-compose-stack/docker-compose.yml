@@ -7,6 +7,7 @@ volumes:
   grafana-storage:
 
 services:
+
     pgadmin:
         restart: unless-stopped
         image: dpage/pgadmin4
@@ -19,6 +20,7 @@ services:
             - ../ssl/privkey.pem:/certs/server.key
         ports:
             - "${YX_PG_PORT:-7001}:443"
+
     grafana:
         restart: unless-stopped
         image: grafana/grafana
@@ -33,3 +35,11 @@ services:
             - GF_SERVER_CERT_KEY=/certs/server.key
         ports:
             - "${YX_GF_PORT:-7002}:3000"
+
+    dozzle:
+        container_name: dozzle
+        image: amir20/dozzle:latest
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - "${YX_DL_PORT:-7003}:8080"

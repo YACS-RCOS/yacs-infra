@@ -15,6 +15,7 @@ If you change an environment variable in `.env`, re-run `make` or `make ops-up`.
 
 - PgAdmin: Manually run SQL queries across production database
 - Grafana: Charting and diagrams
+- Dozzle: Web docker-compose log watcher
 
 ## Service Prefixes
 
@@ -31,6 +32,7 @@ cert. (`YX_SSL_KEY_LOCATION` and `YX_SSL_CERT_LOCATION`)*
 | ------------ | ---------------------- |
 | PgAdmin      | YX_PG                  |
 | Grafana      | YX_GF                  |
+| Dozzle       | YX_DL                  |
 
 ## Reference Docs
 
