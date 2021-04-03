@@ -36,10 +36,35 @@ services:
         ports:
             - "${YX_GF_PORT:-7002}:3000"
 
+    bunker_dozzle:
+        image: bunkerity/bunkerized-nginx
+        restart: always
+        volumes:
+            - ${YX_SSL_CERT_LOCATION}:/certs/server.cert
+            - ${YX_SSL_KEY_LOCATION}:/certs/server.key
+        environment:
+            - USE_REVERSE_PROXY=yes
+            - REVERSE_PROXY_URL=/
+            - REVERSE_PROXY_HOST=http://dozzle:8080
+            - USE_CUSTOM_HTTPS=yes
+            - CUSTOM_HTTPS_CERT=/certs/server.cert
+            - CUSTOM_HTTPS_KEY=/certs/server.key
+            - USE_AUTH_BASIC=yes
+            - USE_DNSBL=no
+            - USE_FAILBAN=no
+            - LIMIT_REQ=no
+            - USE_CLAMAV_SCAN=no
+            - USE_CLAMAV_UPLOAD=no
+            - USE_MODSECURITY=no
+            - USE_MODSECURITY_CRS=no
+            - BLOCK_USER_AGENT=no
+            - AUTH_BASIC_USER=${YX_BNK_DL_USER:-bnk_user}
+            - AUTH_BASIC_PASSWORD=${YX_BNK_DL_PASS:-bnk_pass}
+        ports:
+            - "${YX_BNK_DL_PORT:-7003}:8443"
+
     dozzle:
         container_name: dozzle
         image: amir20/dozzle:latest
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-        ports:
-            - "${YX_DL_PORT:-7003}:8080"

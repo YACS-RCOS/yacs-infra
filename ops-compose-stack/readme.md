@@ -28,11 +28,18 @@ prefixes.
 *NOTE, `YX_SSL` is not a service; only used to refer to local paths of SSL key and
 cert. (`YX_SSL_KEY_LOCATION` and `YX_SSL_CERT_LOCATION`)*
 
-| Service Name | Environment Var Prefix |
-| ------------ | ---------------------- |
-| PgAdmin      | YX_PG                  |
-| Grafana      | YX_GF                  |
-| Dozzle       | YX_DL                  |
+### Bunker
+
+Some services are not automatically configurable with SSL, hence, we set them
+behind a [bunker](https://github.com/bunkerity/bunkerized-nginx#let-s-encrypt)
+(customized Nginx server) to enable SSL and custom authentication. When behind
+a bunker, prefix is `YX_BNK`.
+
+| Service Name      | Environment Var Prefix |
+| ----------------- | ---------------------- |
+| PgAdmin           | YX_PG                  |
+| Grafana           | YX_GF                  |
+| Bunker for Dozzle | YX_BNK_DL              |
 
 ## Reference Docs
 
