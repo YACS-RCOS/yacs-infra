@@ -5,6 +5,7 @@ version: "3.4"
 
 volumes:
   grafana-storage:
+  ackee-storage:
 
 services:
 
@@ -68,3 +69,46 @@ services:
         image: amir20/dozzle:latest
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+
+    ackee:
+        image: electerious/ackee
+        container_name: ackee
+        restart: always
+        environment:
+            - WAIT_HOSTS=ackee_mongo:27017
+            - ACKEE_MONGODB=mongodb://ackee_mongo:27017/ackee
+            - ACKEE_USERNAME=${YX_ACKEE_USER:-ackee_user}
+            - ACKEE_PASSWORD=${YX_ACKEE_PASS:-ackee_pass}
+        depends_on:
+          - ackee_mongo
+
+    bunker_ackee:
+        image: bunkerity/bunkerized-nginx
+        restart: always
+        volumes:
+            - ${YX_SSL_CERT_LOCATION}:/certs/server.cert
+            - ${YX_SSL_KEY_LOCATION}:/certs/server.key
+        environment:
+            - USE_REVERSE_PROXY=yes
+            - REVERSE_PROXY_URL=/
+            - REVERSE_PROXY_HOST=http://ackee:3000
+            - USE_CUSTOM_HTTPS=yes
+            - CUSTOM_HTTPS_CERT=/certs/server.cert
+            - CUSTOM_HTTPS_KEY=/certs/server.key
+            - USE_DNSBL=no
+            - USE_FAILBAN=no
+            - LIMIT_REQ=no
+            - USE_CLAMAV_SCAN=no
+            - USE_CLAMAV_UPLOAD=no
+            - USE_MODSECURITY=no
+            - USE_MODSECURITY_CRS=no
+            - BLOCK_USER_AGENT=no
+        ports:
+            - "${YX_BNK_ACKEE_PORT:-7004}:8443"
+
+    ackee_mongo:
+        image: mongo
+        container_name: ackee_mongo
+        restart: always
+        volumes:
+          - ackee-storage:/data/db

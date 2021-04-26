@@ -16,6 +16,7 @@ If you change an environment variable in `.env`, re-run `make` or `make ops-up`.
 - PgAdmin: Manually run SQL queries across production database
 - Grafana: Charting and diagrams
 - Dozzle: Web docker-compose log watcher
+- Ackee: Analytics Service
 
 ## Service Prefixes
 
@@ -40,6 +41,7 @@ a bunker, prefix is `YX_BNK`.
 | PgAdmin           | YX_PG                  |
 | Grafana           | YX_GF                  |
 | Bunker for Dozzle | YX_BNK_DL              |
+| Bunker for Ackee  | YX_BNK_ACKEE           |
 
 ## Reference Docs
 
