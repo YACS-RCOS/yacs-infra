@@ -13,8 +13,8 @@ services:
         restart: unless-stopped
         image: dpage/pgadmin4
         environment:
-            - PGADMIN_DEFAULT_EMAIL=${YX_ADMIN_EMAIL}
-            - PGADMIN_DEFAULT_PASSWORD=${YX_PG_PASS}
+            - PGADMIN_DEFAULT_EMAIL=yacsrpi@gmail.com
+            - PGADMIN_DEFAULT_PASSWORD=password
             - PGADMIN_ENABLE_TLS=True
         volumes:
             - ../ssl/cert.pem:/certs/server.cert
@@ -121,9 +121,8 @@ services:
           - ./data/prometheus/config:/etc/prometheus/
           - ./data/prometheus/data:/prometheus
         command:
-          - '-config.file=/etc/prometheus/prometheus.yml'
-          - '-storage.local.path=/prometheus'
-          - '-alertmanager.url=http://alertmanager:9093'
+          - '--config.file=/etc/prometheus/prometheus.yml'
+          - '--storage.tsdb.path=/prometheus'
         expose:
           - 9090
         ports:
@@ -150,7 +149,7 @@ services:
           - /var/lib/docker/:/var/lib/docker:ro
         expose:
           - 8080
-      
+
     grafana:
         image: grafana/grafana:latest
         container_name: monitoring_grafana

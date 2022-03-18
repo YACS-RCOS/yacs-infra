@@ -1,4 +1,5 @@
 .env
 *.crt
 *.key
-/data
+/data/prometheus/data/
+/data/grafana/
