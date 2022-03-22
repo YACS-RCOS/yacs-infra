@@ -147,8 +147,8 @@ services:
           - /var/run:/var/run:rw
           - /sys:/sys:ro
           - /var/lib/docker/:/var/lib/docker:ro
-        expose:
-          - 8080
+        ports:
+          - 9999:8080
 
     grafana:
         image: grafana/grafana:latest
