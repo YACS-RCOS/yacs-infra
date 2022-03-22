@@ -16,9 +16,9 @@ services:
             - PGADMIN_DEFAULT_EMAIL=yacsrpi@gmail.com
             - PGADMIN_DEFAULT_PASSWORD=password
             - PGADMIN_ENABLE_TLS=True
-        volumes:
-            - ../ssl/cert.pem:/certs/server.cert
-            - ../ssl/privkey.pem:/certs/server.key
+        # volumes:
+        #     - ../ssl/cert.pem:/certs/server.cert
+        #     - ../ssl/privkey.pem:/certs/server.key
         ports:
             - "${YX_PG_PORT:-7001}:443"
 
@@ -27,29 +27,29 @@ services:
         image: grafana/grafana
         volumes:
             - grafana-storage:/var/lib/grafana
-            - ./certs/server.crt:/certs/server.crt
-            - ./certs/server.key:/certs/server.key
+            # - ./certs/server.crt:/certs/server.crt
+            # - ./certs/server.key:/certs/server.key
         environment:
             - GF_SERVER_PROTOCOL=https
             - GF_SERVER_ENABLE_GZIP=${YX_GF_GZIP:-true}
-            - GF_SERVER_CERT_FILE=/certs/server.crt
-            - GF_SERVER_CERT_KEY=/certs/server.key
+            # - GF_SERVER_CERT_FILE=/certs/server.crt
+            # - GF_SERVER_CERT_KEY=/certs/server.key
         ports:
             - "${YX_GF_PORT:-7002}:3000"
 
     bunker_dozzle:
         image: bunkerity/bunkerized-nginx
         restart: always
-        volumes:
-            - ./certs/server.crt:/certs/server.crt
-            - ./certs/server.key:/certs/server.key
+        # volumes:
+        #     - ./certs/server.crt:/certs/server.crt
+        #     - ./certs/server.key:/certs/server.key
         environment:
             - USE_REVERSE_PROXY=yes
             - REVERSE_PROXY_URL=/
             - REVERSE_PROXY_HOST=http://dozzle:8080
             - USE_CUSTOM_HTTPS=yes
-            - CUSTOM_HTTPS_CERT=/certs/server.crt
-            - CUSTOM_HTTPS_KEY=/certs/server.key
+            # - CUSTOM_HTTPS_CERT=/certs/server.crt
+            # - CUSTOM_HTTPS_KEY=/certs/server.key
             - USE_AUTH_BASIC=yes
             - USE_DNSBL=no
             - USE_FAILBAN=no
@@ -85,16 +85,16 @@ services:
     bunker_ackee:
         image: bunkerity/bunkerized-nginx
         restart: always
-        volumes:
-            - ./certs/server.crt:/certs/server.crt
-            - ./certs/server.key:/certs/server.key
+        # volumes:
+        #     - ./certs/server.crt:/certs/server.crt
+        #     - ./certs/server.key:/certs/server.key
         environment:
             - USE_REVERSE_PROXY=yes
             - REVERSE_PROXY_URL=/
             - REVERSE_PROXY_HOST=http://ackee:3000
             - USE_CUSTOM_HTTPS=yes
-            - CUSTOM_HTTPS_CERT=/certs/server.crt
-            - CUSTOM_HTTPS_KEY=/certs/server.key
+            # - CUSTOM_HTTPS_CERT=/certs/server.crt
+            # - CUSTOM_HTTPS_KEY=/certs/server.key
             - USE_DNSBL=no
             - USE_FAILBAN=no
             - LIMIT_REQ=no
