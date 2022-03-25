@@ -92,9 +92,8 @@ services:
             - USE_REVERSE_PROXY=yes
             - REVERSE_PROXY_URL=/
             - REVERSE_PROXY_HOST=http://ackee:3000
-            - USE_CUSTOM_HTTPS=yes
-            # - GENERATE_SELF_SIGNED_SSL=yes
-            - AUTO_LETS_ENCRYPT=yes
+            - USE_CUSTOM_HTTPS=no
+            - GENERATE_SELF_SIGNED_SSL=yes
             # - CUSTOM_HTTPS_CERT=/certs/server.crt
             # - CUSTOM_HTTPS_KEY=/certs/server.key
             - USE_DNSBL=no
