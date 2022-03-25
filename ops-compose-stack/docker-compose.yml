@@ -40,14 +40,14 @@ services:
     bunker_dozzle:
         image: bunkerity/bunkerized-nginx
         restart: always
-        volumes:
-            - ./certs/server.crt:/certs/server.crt
-            - ./certs/server.key:/certs/server.key
+        # volumes:
+        #     - ./certs/server.crt:/certs/server.crt
+        #     - ./certs/server.key:/certs/server.key
         environment:
             - USE_REVERSE_PROXY=yes
             - REVERSE_PROXY_URL=/
             - REVERSE_PROXY_HOST=http://dozzle:8080
-            - USE_CUSTOM_HTTPS=yes
+            - USE_CUSTOM_HTTPS=no
             # - CUSTOM_HTTPS_CERT=/certs/server.crt
             # - CUSTOM_HTTPS_KEY=/certs/server.key
             - USE_AUTH_BASIC=yes
