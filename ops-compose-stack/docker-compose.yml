@@ -115,6 +115,7 @@ services:
 
     prometheus:
         image: prom/prometheus:latest
+        user: "1002:1002"
         container_name: monitoring_prometheus
         restart: unless-stopped
         volumes:
@@ -123,8 +124,6 @@ services:
         command:
           - '--config.file=/etc/prometheus/prometheus.yml'
           - '--storage.tsdb.path=/prometheus'
-          - chown
-          - -R
         expose:
           - 9090
         ports:
