@@ -62,7 +62,7 @@ services:
             - AUTH_BASIC_USER=${YX_BNK_DL_USER:-bnk_user}
             - AUTH_BASIC_PASSWORD=${YX_BNK_DL_PASS:-bnk_pass}
         ports:
-            - "${YX_BNK_DL_PORT:-7003}:108443"
+            - "${YX_BNK_DL_PORT:-7003}:18443"
 
     dozzle:
         container_name: dozzle
@@ -105,7 +105,7 @@ services:
             - USE_MODSECURITY_CRS=no
             - BLOCK_USER_AGENT=no
         ports:
-            - "${YX_BNK_ACKEE_PORT:-7004}:118443"
+            - "${YX_BNK_ACKEE_PORT:-7004}:8443"
 
     ackee_mongo:
         image: mongo
