@@ -16,9 +16,9 @@ services:
             - PGADMIN_DEFAULT_EMAIL=yacsrpi@gmail.com
             - PGADMIN_DEFAULT_PASSWORD=password
             - PGADMIN_ENABLE_TLS=True
-        # volumes:
-        #     - ../ssl/cert.pem:/certs/server.cert
-        #     - ../ssl/privkey.pem:/certs/server.key
+        volumes:
+            - ../ssl/cert.pem:/certs/server.cert
+            - ../ssl/privkey.pem:/certs/server.key
         ports:
             - "${YX_PG_PORT:-7001}:443"
 
