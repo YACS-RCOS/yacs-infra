@@ -40,9 +40,9 @@ services:
     bunker_dozzle:
         image: bunkerity/bunkerized-nginx
         restart: always
-        # volumes:
-        #     - ./certs/server.crt:/certs/server.crt
-        #     - ./certs/server.key:/certs/server.key
+        volumes:
+            - ./certs/server.crt:/certs/server.crt
+            - ./certs/server.key:/certs/server.key
         environment:
             - USE_REVERSE_PROXY=yes
             - REVERSE_PROXY_URL=/
