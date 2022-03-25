@@ -115,12 +115,12 @@ services:
 
     prometheus:
         image: prom/prometheus:latest
-        user: "1002:1002"
+        user: root
         container_name: monitoring_prometheus
         restart: unless-stopped
         volumes:
-          - ./data/prometheus/config:/etc/prometheus/
-          - ./data/prometheus/data:/prometheus
+          - ./data/prometheus/config/:/etc/prometheus/
+          - ./data/prometheus/data/:/prometheus
         command:
           - '--config.file=/etc/prometheus/prometheus.yml'
           - '--storage.tsdb.path=/prometheus'
