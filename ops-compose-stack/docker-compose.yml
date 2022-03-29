@@ -35,7 +35,7 @@ services:
             # - GF_SERVER_CERT_FILE=/certs/server.crt
             # - GF_SERVER_CERT_KEY=/certs/server.key
         ports:
-            - "${YX_GF_PORT:-7002}:3000"
+            - "3000:3000"
 
     # bunker_dozzle:
     #     image: bunkerity/bunkerized-nginx
