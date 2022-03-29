@@ -37,39 +37,39 @@ services:
         ports:
             - "${YX_GF_PORT:-7002}:3000"
 
-    bunker_dozzle:
-        image: bunkerity/bunkerized-nginx
-        restart: always
-        # volumes:
-        #     - ./certs/server.crt:/certs/server.crt
-        #     - ./certs/server.key:/certs/server.key
-        environment:
-            - USE_REVERSE_PROXY=yes
-            - REVERSE_PROXY_URL=/
-            - REVERSE_PROXY_HOST=http://dozzle:8080
-            - USE_CUSTOM_HTTPS=yes
-            - GENERATE_SELF_SIGNED_SSL=yes
-            # - CUSTOM_HTTPS_CERT=/certs/server.crt
-            # - CUSTOM_HTTPS_KEY=/certs/server.key
-            - USE_AUTH_BASIC=yes
-            - USE_DNSBL=no
-            - USE_FAILBAN=no
-            - LIMIT_REQ=no
-            - USE_CLAMAV_SCAN=no
-            - USE_CLAMAV_UPLOAD=no
-            - USE_MODSECURITY=no
-            - USE_MODSECURITY_CRS=no
-            - BLOCK_USER_AGENT=no
-            - AUTH_BASIC_USER=${YX_BNK_DL_USER:-bnk_user}
-            - AUTH_BASIC_PASSWORD=${YX_BNK_DL_PASS:-bnk_pass}
-        ports:
-            - "${YX_BNK_DL_PORT:-7003}:18443"
+    # bunker_dozzle:
+    #     image: bunkerity/bunkerized-nginx
+    #     restart: always
+    #     # volumes:
+    #     #     - ./certs/server.crt:/certs/server.crt
+    #     #     - ./certs/server.key:/certs/server.key
+    #     environment:
+    #         - USE_REVERSE_PROXY=yes
+    #         - REVERSE_PROXY_URL=/
+    #         - REVERSE_PROXY_HOST=http://dozzle:8080
+    #         - USE_CUSTOM_HTTPS=yes
+    #         - GENERATE_SELF_SIGNED_SSL=yes
+    #         # - CUSTOM_HTTPS_CERT=/certs/server.crt
+    #         # - CUSTOM_HTTPS_KEY=/certs/server.key
+    #         - USE_AUTH_BASIC=yes
+    #         - USE_DNSBL=no
+    #         - USE_FAILBAN=no
+    #         - LIMIT_REQ=no
+    #         - USE_CLAMAV_SCAN=no
+    #         - USE_CLAMAV_UPLOAD=no
+    #         - USE_MODSECURITY=no
+    #         - USE_MODSECURITY_CRS=no
+    #         - BLOCK_USER_AGENT=no
+    #         - AUTH_BASIC_USER=${YX_BNK_DL_USER:-bnk_user}
+    #         - AUTH_BASIC_PASSWORD=${YX_BNK_DL_PASS:-bnk_pass}
+    #     ports:
+    #         - "${YX_BNK_DL_PORT:-7003}:18443"
 
-    dozzle:
-        container_name: dozzle
-        image: amir20/dozzle:latest
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
+    # dozzle:
+    #     container_name: dozzle
+    #     image: amir20/dozzle:latest
+    #     volumes:
+    #         - /var/run/docker.sock:/var/run/docker.sock
 
     ackee:
         image: electerious/ackee
@@ -83,30 +83,30 @@ services:
         depends_on:
           - ackee_mongo
 
-    bunker_ackee:
-        image: bunkerity/bunkerized-nginx
-        restart: always
-        # volumes:
-        #     - ./certs/server.crt:/certs/server.crt
-        #     - ./certs/server.key:/certs/server.key
-        environment:
-            - USE_REVERSE_PROXY=yes
-            - REVERSE_PROXY_URL=/
-            - REVERSE_PROXY_HOST=http://ackee:3000
-            - USE_CUSTOM_HTTPS=no
-            - GENERATE_SELF_SIGNED_SSL=yes
-            # - CUSTOM_HTTPS_CERT=/certs/server.crt
-            # - CUSTOM_HTTPS_KEY=/certs/server.key
-            - USE_DNSBL=no
-            - USE_FAILBAN=no
-            - LIMIT_REQ=no
-            - USE_CLAMAV_SCAN=no
-            - USE_CLAMAV_UPLOAD=no
-            - USE_MODSECURITY=no
-            - USE_MODSECURITY_CRS=no
-            - BLOCK_USER_AGENT=no
-        ports:
-            - "${YX_BNK_ACKEE_PORT:-7004}:8443"
+    # bunker_ackee:
+    #     image: bunkerity/bunkerized-nginx
+    #     restart: always
+    #     # volumes:
+    #     #     - ./certs/server.crt:/certs/server.crt
+    #     #     - ./certs/server.key:/certs/server.key
+    #     environment:
+    #         - USE_REVERSE_PROXY=yes
+    #         - REVERSE_PROXY_URL=/
+    #         - REVERSE_PROXY_HOST=http://ackee:3000
+    #         - USE_CUSTOM_HTTPS=no
+    #         - GENERATE_SELF_SIGNED_SSL=yes
+    #         # - CUSTOM_HTTPS_CERT=/certs/server.crt
+    #         # - CUSTOM_HTTPS_KEY=/certs/server.key
+    #         - USE_DNSBL=no
+    #         - USE_FAILBAN=no
+    #         - LIMIT_REQ=no
+    #         - USE_CLAMAV_SCAN=no
+    #         - USE_CLAMAV_UPLOAD=no
+    #         - USE_MODSECURITY=no
+    #         - USE_MODSECURITY_CRS=no
+    #         - BLOCK_USER_AGENT=no
+    #     ports:
+    #         - "${YX_BNK_ACKEE_PORT:-7004}:8443"
 
     ackee_mongo:
         image: mongo
