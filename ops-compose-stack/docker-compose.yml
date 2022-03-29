@@ -36,6 +36,8 @@ services:
             # - GF_SERVER_CERT_KEY=/certs/server.key
         expose:
             - 3000
+        ports:
+          - 3000:3000
 
     # bunker_dozzle:
     #     image: bunkerity/bunkerized-nginx
