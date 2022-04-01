@@ -22,22 +22,22 @@ services:
         ports:
             - "${YX_PG_PORT:-7001}:443"
 
-    grafana:
-        restart: unless-stopped
-        image: grafana/grafana
-        volumes:
-            - grafana-storage:/var/lib/grafana
-            # - ./certs/server.crt:/certs/server.crt
-            # - ./certs/server.key:/certs/server.key
-        environment:
-            - GF_SERVER_PROTOCOL=https
-            - GF_SERVER_ENABLE_GZIP=${YX_GF_GZIP:-true}
-            # - GF_SERVER_CERT_FILE=/certs/server.crt
-            # - GF_SERVER_CERT_KEY=/certs/server.key
-        expose:
-            - 4000
-        ports:
-          - 4000:4000
+    # grafana:
+    #     restart: unless-stopped
+    #     image: grafana/grafana
+    #     volumes:
+    #         - grafana-storage:/var/lib/grafana
+    #         # - ./certs/server.crt:/certs/server.crt
+    #         # - ./certs/server.key:/certs/server.key
+    #     environment:
+    #         - GF_SERVER_PROTOCOL=https
+    #         - GF_SERVER_ENABLE_GZIP=${YX_GF_GZIP:-true}
+    #         # - GF_SERVER_CERT_FILE=/certs/server.crt
+    #         # - GF_SERVER_CERT_KEY=/certs/server.key
+    #     expose:
+    #         - 4000
+    #     ports:
+    #       - 4000:4000
 
     # bunker_dozzle:
     #     image: bunkerity/bunkerized-nginx
@@ -168,3 +168,7 @@ services:
           - GF_USERS_ALLOW_SIGN_UP=false
           - GF_SERVER_DOMAIN=yacs.cs.rpi.edu
           - GF_SMTP_ENABLED=false
+        expose:
+            - 4000
+        ports:
+          - 4000:4000
