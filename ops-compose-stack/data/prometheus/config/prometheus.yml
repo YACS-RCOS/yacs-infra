@@ -21,13 +21,23 @@ scrape_configs:
   - job_name: 'prometheus'
 
     # Override the global default and scrape targets from this job every 5 seconds.
-    scrape_interval: 120s
+    scrape_interval: 5s
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
     static_configs:
-         - targets: ['localhost:9090','cadvisor:8080','node-exporter:9100', 'nginx-exporter:9113']
+         - targets: ['monitoring_prometheus:9090']
+
+  - job_name: 'yacs_web'
+    scrape_interval: 5s
+    static_configs:
+         - targets: ['yacs_web:8080', 'yacs_web:8443']
+
+  - job_name: 'yacs_db'
+    scrape_interval: 5s
+    static_configs:
+         - targets: ['yacs_db:5432']
 
 alerting:
   alertmanagers:
