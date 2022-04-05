@@ -27,17 +27,17 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-         - targets: ['monitoring_prometheus:9090']
+         - targets: ['localhost:9090']
 
   - job_name: 'yacs_web'
     scrape_interval: 5s
     static_configs:
-         - targets: ['yacs_web:8080', 'yacs_web:8443']
+         - targets: ['localhost:8080', 'localhost:8443']
 
   - job_name: 'yacs_db'
     scrape_interval: 5s
     static_configs:
-         - targets: ['yacs_db:5432']
+         - targets: ['localhost:5432']
 
 alerting:
   alertmanagers:
